@@ -1,12 +1,14 @@
 import React from 'react';
 import './Image.css';
 
-function Image ({id, urls, onclick} ){
-  // var classes=`gallery__item gallery__item--${index}`;
-
+function Image (props ){
   return(
     <React.Fragment>
-      <img src={urls.large} alt={id} id={id} onClick={onclick}/>
+      <img 
+      src={props.data.src.large} 
+      alt={props.data.alt}
+      onClick={props.onclick.bind(this, props.data)}
+      />
     </React.Fragment>
   );
 }
