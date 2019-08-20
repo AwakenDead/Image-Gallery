@@ -5,7 +5,6 @@ import ImageList from './Components/Images/ImageList';
 import Pagination from './Components/Navigation/Pagination';
 import Footer from './Components/Navigation/Footer';
 
-// const pexels = new PexelsAPI("563492ad6f91700001000001c85272b4715f4691a6ab608f9cff5c7e");
 
 class App extends Component {
   
@@ -28,7 +27,7 @@ class App extends Component {
     this.setState({loaded : false});
     fetch(`https://api.pexels.com/v1/curated?per_page=${this.state.per_page}`, {
       headers: {
-        "Authorization" : "563492ad6f91700001000001c85272b4715f4691a6ab608f9cff5c7e"
+        "Authorization" : "YOUR API_KEY"
       }
     })
     .then(response => response.json())
@@ -60,7 +59,7 @@ class App extends Component {
     this.setState({activePage : 0});
     fetch(`https://api.pexels.com/v1/search?query=${this.state.searchfeild}&per_page=${this.state.per_page}`, {
       headers: {
-        "Authorization" : "563492ad6f91700001000001c85272b4715f4691a6ab608f9cff5c7e"
+        "Authorization" : "YOUR API_KEY"
       }
     })
     .then(response => response.json())
@@ -74,7 +73,7 @@ class App extends Component {
       this.setState({activePage : 0});
       fetch(`https://api.pexels.com/v1/search?query=${this.state.searchfeild}&per_page=${this.state.per_page}`, {
         headers: {
-          "Authorization" : "563492ad6f91700001000001c85272b4715f4691a6ab608f9cff5c7e"
+          "Authorization" : "YOUR API_KEY"
         }
       })
       .then(response => response.json())
@@ -88,7 +87,7 @@ class App extends Component {
     this.setState({loaded : false});
     fetch(`${this.state.curr_page.next_page}`, {
       headers: {
-        "Authorization" : "563492ad6f91700001000001c85272b4715f4691a6ab608f9cff5c7e"
+        "Authorization" : "YOUR API_KEY"
       }
     })
     .then(response => response.json())
@@ -101,7 +100,7 @@ class App extends Component {
     this.setState({loaded : false});
     fetch(`${this.state.curr_page.prev_page}`, {
       headers: {
-        "Authorization" : "563492ad6f91700001000001c85272b4715f4691a6ab608f9cff5c7e"
+        "Authorization" : "YOUR API_KEY"
       }
     })
     .then(response => response.json())
