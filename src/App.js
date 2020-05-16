@@ -19,7 +19,8 @@ class App extends Component {
         total_pages : 0,
         searchfeild: '',
         modalImg : '',
-        loaded: false
+        loaded: false,
+        notFound: false
     }
   }
 
@@ -38,10 +39,19 @@ class App extends Component {
   }
 
   changeStates = (json) => {
-      this.setState({curr_page : json});
-      this.setState({activePage : json.page});
-      this.setState({photos : json.photos});
-      this.setState({loaded : true});
+      // console.log(json)
+      // console.log(json.total_results)
+      if(json.total_results === 0){
+        
+        this.setState({loaded : true});
+        this.setState({notFound : true})
+      }else{
+        this.setState({curr_page : json});
+        this.setState({activePage : json.page});
+        this.setState({photos : json.photos});
+        this.setState({loaded : true});
+        this.setState({notFound : false})
+      }
   }
   
   componentWillUnmount(){
@@ -57,12 +67,15 @@ class App extends Component {
     this.setState({loaded : false});
     this.setState({photos : []});
     this.setState({activePage : 0});
-    fetch(`https://api.pexels.com/v1/search?query=${this.state.searchfeild}&per_page=${this.state.per_page}`, {
+    var search = this.state.searchfeild === "" ? "curated?" : `search?query=${this.state.searchfeild}&`
+      fetch(`https://api.pexels.com/v1/${search}per_page=${this.state.per_page}`, {
       headers: {
         "Authorization" : "YOUR API_KEY"
       }
     })
-    .then(response => response.json())
+    .then(response => {
+      return response.json()
+    })
     .then(this.changeStates);
   }
 
@@ -71,7 +84,9 @@ class App extends Component {
       this.setState({loaded : false});
       this.setState({photos : []});
       this.setState({activePage : 0});
-      fetch(`https://api.pexels.com/v1/search?query=${this.state.searchfeild}&per_page=${this.state.per_page}`, {
+      // https://api.pexels.com/v1/curated?per_page=${this.state.per_page}`, 
+      var search = this.state.searchfeild === "" ? "curated?" : `search?query=${this.state.searchfeild}&`
+      fetch(`https://api.pexels.com/v1/${search}per_page=${this.state.per_page}`, {
         headers: {
           "Authorization" : "YOUR API_KEY"
         }
@@ -127,6 +142,16 @@ class App extends Component {
   }
 
   render(){
+    
+    if(this.state.notFound){
+        return(
+          <React.Fragment >
+            <Navigation onchange={this.onchange} onclick={this.onClickSearch} onpress={this.onPressEnter}/>
+            <div className="f4 pa4 center tc measure"> Sorry, nothing found</div>
+          </React.Fragment>      
+        );
+    }
+    
     return (
       <React.Fragment>
         <Navigation onchange={this.onchange} onclick={this.onClickSearch} onpress={this.onPressEnter}/>

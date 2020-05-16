@@ -37,18 +37,42 @@ class ImageList extends React.Component{
                 </div>
             );
         }else{
-            var rows = [];
-            var ind;
-            
-            for(var i = 0; i < 4; i++){
-                rows.push([]);
-                for(var j = 0; j < this.props.list.length/4; j++){
-                    ind = i*(this.props.list.length/4) + j;
-                    rows[i].push( <Image data={this.props.list[ind]} onclick={this.selectImage} key={ind}/>);
+                // console.log("list", this.props.list)
+                // console.log("list.length", this.props.list)
+                var rows = [];
+                var ind = 0;
+                var tot = this.props.list.length;
+
+                while(tot > 0){
+                    for(var row = 0; row < 4 && tot > 0; row++, ind++){
+                        if(rows[row] === undefined){
+                            rows.push([]);
+                            // console.log("row", row)
+                        }
+                        // console.log("data", this.props.list[ind])
+                        rows[row].push( <Image data={this.props.list[ind]} onclick={this.selectImage} key={ind}/>);
+                        tot--;
+                    }
                 }
+                
+                // console.log(this.props.list.length)
+                // for(var i = 0; i < 4 && tot > 0; i++){
+                //     rows.push([]);
+                    
+                //     for(var j = 0; j < this.props.list.length/4 && tot > 0; j++){
+                //         console.log(tot)
+                //         ind = i*(this.props.list.length/4) + j;
+                //         console.log("ind", ind)
+                //         console.log("data", this.props.list[ind])
+                //         rows[i].push( <Image data={this.props.list[ind]} onclick={this.selectImage} key={ind}/>);
+                //         tot--;
+                //     }
+                // }
+                // console.log("1" , rows[0].length)
+                // console.log("2", rows[1].length)
+                // console.log("3", rows[2].length)
+                // console.log("4", rows[3].length)
             }
-            
-        }
 
         return(
             <div className="back">

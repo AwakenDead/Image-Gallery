@@ -2,6 +2,7 @@ import React from 'react';
 import './Image.css';
 
 function Image (props ){
+  
   return(
     <React.Fragment>
       <img 
