@@ -28,7 +28,7 @@ class App extends Component {
     this.setState({loaded : false});
     fetch(`https://api.pexels.com/v1/curated?per_page=${this.state.per_page}`, {
       headers: {
-        "Authorization" : "YOUR API_KEY"
+        "Authorization" : "563492ad6f91700001000001c85272b4715f4691a6ab608f9cff5c7e"
       }
     })
     .then(response => response.json())
@@ -70,7 +70,7 @@ class App extends Component {
     var search = this.state.searchfeild === "" ? "curated?" : `search?query=${this.state.searchfeild}&`
       fetch(`https://api.pexels.com/v1/${search}per_page=${this.state.per_page}`, {
       headers: {
-        "Authorization" : "YOUR API_KEY"
+        "Authorization" : "563492ad6f91700001000001c85272b4715f4691a6ab608f9cff5c7e"
       }
     })
     .then(response => {
@@ -88,7 +88,7 @@ class App extends Component {
       var search = this.state.searchfeild === "" ? "curated?" : `search?query=${this.state.searchfeild}&`
       fetch(`https://api.pexels.com/v1/${search}per_page=${this.state.per_page}`, {
         headers: {
-          "Authorization" : "YOUR API_KEY"
+          "Authorization" : "563492ad6f91700001000001c85272b4715f4691a6ab608f9cff5c7e"
         }
       })
       .then(response => response.json())
@@ -102,7 +102,7 @@ class App extends Component {
     this.setState({loaded : false});
     fetch(`${this.state.curr_page.next_page}`, {
       headers: {
-        "Authorization" : "YOUR API_KEY"
+        "Authorization" : "563492ad6f91700001000001c85272b4715f4691a6ab608f9cff5c7e"
       }
     })
     .then(response => response.json())
@@ -115,7 +115,7 @@ class App extends Component {
     this.setState({loaded : false});
     fetch(`${this.state.curr_page.prev_page}`, {
       headers: {
-        "Authorization" : "YOUR API_KEY"
+        "Authorization" : "563492ad6f91700001000001c85272b4715f4691a6ab608f9cff5c7e"
       }
     })
     .then(response => response.json())
